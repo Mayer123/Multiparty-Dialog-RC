@@ -214,7 +214,7 @@ if __name__ == '__main__':
     parser.add_option('--random_seed',
                       action='store',
                       dest='random_seed',
-                      default=1013,
+                      default=1234,
                       help='random seed')
     parser.add_option('--embedding_file',
                       action='store',

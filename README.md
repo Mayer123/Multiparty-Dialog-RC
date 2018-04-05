@@ -12,7 +12,8 @@ Challenge Reading Comprehension on Daily Conversations: Passage Completion on Mu
 
 ## Datasets
 
-    Our dataset can be found at http://nlp.mathcs.emory.edu/tools-datasets.html. 
+	Our datasets with experimental splits can be found in dialog_rc_data directory
+    The original TV show transcripts in json format can be found at https://github.com/emorynlp/character-mining. 
     
 * Word embeddings:
 	We used Glove vectors with 100 dimentions 
@@ -20,8 +21,8 @@ Challenge Reading Comprehension on Daily Conversations: Passage Completion on Mu
 
 ## Usage
 ```
-    python exp.py --train_file tenseasons_original_sample.train.struct.json 
-                   --dev_file tenseasons_original_sample.dev.struct.json 
+    python exp.py --train_file ../dialog_rc_data/Original/Friends_original_sample.train.struct.json 
+                   --dev_file ../dialog_rc_data/Original/Friends_original_sample.dev.struct.json 
                    --embedding_file glove.6B.100d.txt
                    --model cnn_lstm_UA_DA --logging_to_file log.txt
                    --save_model model.h5 --stopwords stopwords.txt

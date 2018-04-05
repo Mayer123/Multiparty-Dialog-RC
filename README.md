@@ -12,12 +12,10 @@ Challenge Reading Comprehension on Daily Conversations: Passage Completion on Mu
 
 ## Datasets
 
-	Our datasets with experimental splits can be found in [dialog_rc_data](https://github.com/Mayer123/Multiparty-Dialog-RC/tree/master/dialog_rc_data)
-    The original TV show transcripts in json format can be found at [https://github.com/emorynlp/character-mining](https://github.com/emorynlp/character-mining). 
-    
-* Word embeddings:
-	We used Glove vectors with 100 dimentions 
-    * glove.6B.zip: [http://nlp.stanford.edu/data/glove.6B.zip](http://nlp.stanford.edu/data/glove.6B.zip)
+Our datasets with experimental splits can be found at [dialog_rc_data](dialog_rc_data) in json format.
+The original TV show transcripts in json format can be found at [Character Mining](https://github.com/emorynlp/character-mining) project. 
+Word embeddings: We used [Glove vectors](http://nlp.stanford.edu/data/glove.6B.zip) with 100 dimentions. 
+
 
 ## Usage
 ```

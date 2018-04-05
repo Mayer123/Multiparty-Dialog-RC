@@ -13,7 +13,9 @@ Challenge Reading Comprehension on Daily Conversations: Passage Completion on Mu
 ## Datasets
 
 Our datasets with experimental splits can be found at [dialog_rc_data](dialog_rc_data) in json format.
+
 The original TV show transcripts in json format can be found at [Character Mining](https://github.com/emorynlp/character-mining) project. 
+
 Word embeddings: We used [Glove vectors](http://nlp.stanford.edu/data/glove.6B.zip) with 100 dimentions. 
 
 

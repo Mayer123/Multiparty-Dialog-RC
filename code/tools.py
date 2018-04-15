@@ -91,8 +91,8 @@ def prune_data(in_file):
     for sample in samples:
         question = sample['query'].strip().lower()
         document = []
-        for utter in sample['utterance']:
-            document.append(' '.join([utter['speaker'], utter['text'].strip().lower()]))
+        for utter in sample['utterances']:
+            document.append(' '.join([utter['speakers'], utter['tokens'].strip().lower()]))
         q_words = question.split(' ')
         sample_dict = Counter()
         for w in q_words:
@@ -131,8 +131,8 @@ def load_jsondata(in_file, redundent_1, redundent_2, stopwords_file):
         question = sample['query'].strip().lower()
         answer = sample['answer'].strip()
         document = []
-        for utter in sample['utterance']:
-            document.append(' '.join([utter['speaker'], utter['text'].strip().lower()]))
+        for utter in sample['utterances']:
+            document.append(' '.join([utter['speakers'], utter['tokens'].strip().lower()]))
 
         if len(document) > max_s_len:
             max_s_len = len(document)

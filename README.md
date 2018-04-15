@@ -21,8 +21,8 @@ Word embeddings: We used [Glove vectors](http://nlp.stanford.edu/data/glove.6B.z
 
 ## Usage
 ```
-    python exp.py --train_file ../dialog_rc_data/Original/Friends_original_sample.train.struct.json 
-                   --dev_file ../dialog_rc_data/Original/Friends_original_sample.dev.struct.json 
+    python exp.py --train_file ../dialog_rc_data/json/Trn.json 
+                   --dev_file ../dialog_rc_data/json/Dev.json 
                    --embedding_file glove.6B.100d.txt
                    --model cnn_lstm_UA_DA --logging_to_file log.txt
                    --save_model model.h5 --stopwords stopwords.txt

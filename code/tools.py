@@ -32,9 +32,9 @@ def vectorize(examples, word_dict, entity_dict, max_d, max_q, max_s, verbose=Tru
     in_l = np.zeros((len(examples[0]), len(entity_dict))).astype(np.float32)
     in_y = []
     # masking for actual words in queries
-    in_qmask = np.ones((len(examples[0]), max_q)).astype(np.float32)
+    in_qmask = np.zeros((len(examples[0]), max_q)).astype(np.float32)
     # masking for actual utterances in dialogs
-    in_dmask = np.ones((len(examples[0]), max_s)).astype(np.float32)
+    in_dmask = np.zeros((len(examples[0]), max_s)).astype(np.float32)
     for idx, (d, q, a) in enumerate(zip(examples[0], examples[1], examples[2])):
         q_words = q.split(' ')
         q_vec = np.zeros((max_q))

@@ -27,6 +27,12 @@ def gen_examples(x1, x2, l, y, qmask, dmask, batch_size):
         all_ex.append((mb_x1, mb_x2, mb_l, mb_y, mb_qmask, mb_dmask))
     return all_ex
 
+def pre_shuffle(x1, x2, l, y, qmask, dmask):
+    combine = list(zip(x1, x2, l, y, qmask, dmask))
+    np.random.shuffle(combine)
+    x1, x2, l, y, qmask, dmask = zip(*combine)
+    return list(x1), list(x2), np.array(l), list(y), np.array(qmask), np.array(dmask)
+
 def accuracy_score(y_pred, y_true):
     assert len(y_pred) == len(y_true)
 
@@ -128,6 +134,7 @@ def cnn_lstm_DA(args):
     train_x1, train_x2, train_l, train_y, train_qmask, train_dmask = tools.vectorize(train_examples, word_dict, entity_dict, max_d, max_q, max_s)
     assert len(train_x1) == num_train
     
+    train_x1, train_x2, train_l, train_y, train_qmask, train_dmask = pre_shuffle(train_x1, train_x2, train_l, train_y, train_qmask, train_dmask)
     start_time = time.time()
     n_updates = 0
     all_train = gen_examples(train_x1, train_x2, train_l, train_y, train_qmask, train_dmask, args.batch_size)

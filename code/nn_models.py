@@ -47,9 +47,9 @@ class CNN_LSTM_UA_DA_Model(BaseModel):
         masked_sum_ = K.sum(masked_classes, axis=1)
         masked_sum_ = K.expand_dims(masked_sum_, -1)
         masked_sum = K.repeat_elements(masked_sum_, self.nb_classes, axis=1)
-        m_classes = m_classes / masked_sum
-        m_classes = K.clip(m_classes, 1e-7, 1.0 - 1e-7)
-        return m_classes
+        masked_classes = masked_classes / masked_sum
+        masked_classes = K.clip(masked_classes, 1e-7, 1.0 - 1e-7)
+        return masked_classes
 
     def crossatt(self, x):
         doc, query, doc_mask, q_mask = x[0], x[1], x[2], x[3]
@@ -202,9 +202,9 @@ class CNN_LSTM_UA_Model(BaseModel):
         masked_sum_ = K.sum(masked_classes, axis=1)
         masked_sum_ = K.expand_dims(masked_sum_, -1)
         masked_sum = K.repeat_elements(masked_sum_, self.nb_classes, axis=1)
-        m_classes = m_classes / masked_sum
-        m_classes = K.clip(m_classes, 1e-7, 1.0 - 1e-7)
-        return m_classes
+        masked_classes = masked_classes / masked_sum
+        masked_classes = K.clip(masked_classes, 1e-7, 1.0 - 1e-7)
+        return masked_classes
 
     def build_model(self):
 
@@ -324,9 +324,9 @@ class CNN_LSTM_DA_Model(BaseModel):
         masked_sum_ = K.sum(masked_classes, axis=1)
         masked_sum_ = K.expand_dims(masked_sum_, -1)
         masked_sum = K.repeat_elements(masked_sum_, self.nb_classes, axis=1)
-        m_classes = m_classes / masked_sum
-        m_classes = K.clip(m_classes, 1e-7, 1.0 - 1e-7)
-        return m_classes
+        masked_classes = masked_classes / masked_sum
+        masked_classes = K.clip(masked_classes, 1e-7, 1.0 - 1e-7)
+        return masked_classes
 
     def crossatt(self, x):
         doc, query, doc_mask, q_mask = x[0], x[1], x[2], x[3]
@@ -474,9 +474,9 @@ class CNN_LSTM_Model(BaseModel):
         masked_sum_ = K.sum(masked_classes, axis=1)
         masked_sum_ = K.expand_dims(masked_sum_, -1)
         masked_sum = K.repeat_elements(masked_sum_, self.nb_classes, axis=1)
-        m_classes = m_classes / masked_sum
-        m_classes = K.clip(m_classes, 1e-7, 1.0 - 1e-7)
-        return m_classes
+        masked_classes = masked_classes / masked_sum
+        masked_classes = K.clip(masked_classes, 1e-7, 1.0 - 1e-7)
+        return masked_classes
 
     def build_model(self):
 

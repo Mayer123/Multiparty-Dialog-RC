@@ -50,7 +50,6 @@ def accuracy_score(y_pred, y_true):
 def eval_acc(any_model, all_examples, max_d, max_q, max_s):
     acc = 0
     n_examples = 0
-    predictions = []
     for x1, x2, l, y, q_mask, d_mask in all_examples:
         newx1 = []
         for i in xrange(len(x1[0])):

@@ -9,11 +9,11 @@ def build_dict(documents, questions):
     # create dictionary for entire vocabulary 
     word_count = Counter()
     for sent in questions:
-        for w in sent.split(' '):
+        for w in sent.split():
             word_count[w] += 1
     for sample in documents:
         for utter in sample:
-            for w in utter.split(' '):
+            for w in utter.split():
                 word_count[w] += 1
 
     ls = word_count.most_common()
@@ -36,7 +36,7 @@ def vectorize(examples, word_dict, entity_dict, max_d, max_q, max_s, verbose=Tru
     # masking for actual utterances in dialogs
     in_dmask = np.zeros((len(examples[0]), max_s)).astype(np.float32)
     for idx, (d, q, a) in enumerate(zip(examples[0], examples[1], examples[2])):
-        q_words = q.split(' ')
+        q_words = q.split()
         q_vec = np.zeros((max_q))
         for i in xrange(min(len(q_words), max_q)):
             if q_words[i] in word_dict:
@@ -65,12 +65,12 @@ def vectorize(examples, word_dict, entity_dict, max_d, max_q, max_s, verbose=Tru
 def build_match(embeddings, examples, word_dict, max_d, max_q, max_s):
     all_matches = []
     for idx, (d, q, a) in enumerate(zip(examples[0], examples[1], examples[2])):
-        q_words = q.split(' ')
+        q_words = q.split()
         q_vec = [word_dict[w] if w in word_dict else 0 for w in q_words]
         question = np.array([embeddings[w] for w in q_vec])
         sample = []
         for utter in d:
-            u_words = utter.split(' ')
+            u_words = utter.split()
             u_vec = [word_dict[w] if w in word_dict else 0 for w in u_words]
             document = np.array([embeddings[w] for w in u_vec])
             score = np.zeros((max_d, max_q))
@@ -89,17 +89,17 @@ def prune_data(in_file):
     # create prune dictionaries based on document frequency of words
     doc_frequency = Counter()
     for sample in samples:
-        question = sample['query'].strip().lower()
+        question = sample['query'].lower()
         document = []
         for utter in sample['utterances']:
-            document.append(' '.join([utter['speakers'], utter['tokens'].strip().lower()]))
-        q_words = question.split(' ')
+            document.append(' '.join([utter['speakers'], utter['tokens'].lower()]).strip())
+        q_words = question.split()
         sample_dict = Counter()
         for w in q_words:
             if w not in sample_dict:
                 sample_dict[w] = 1
         for u in document:
-            u_words = u.split(' ')
+            u_words = u.split()
             for w in u_words:
                 if w not in sample_dict:
                     sample_dict[w] = 1
@@ -128,22 +128,22 @@ def load_jsondata(in_file, redundent_1, redundent_2, stopwords_file):
     max_s_len = 0
     
     for sample in samples:
-        question = sample['query'].strip().lower()
-        answer = sample['answer'].strip()
+        question = sample['query'].lower()
+        answer = sample['answer']
         document = []
         for utter in sample['utterances']:
-            document.append(' '.join([utter['speakers'], utter['tokens'].strip().lower()]))
+            document.append(' '.join([utter['speakers'], utter['tokens'].lower()]).strip())
 
         if len(document) > max_s_len:
             max_s_len = len(document)
        
-        q_words = question.split(' ')
+        q_words = question.split()
         if len(q_words) > max_q_len:
             max_q_len = len(q_words)
         d_words = []
         new_document = []
         for u in document:
-            u_words = u.split(' ')        
+            u_words = u.split()        
             if len(u_words) > 80:
                 u_words = [w for w in u_words if w not in stopwords]
     
@@ -164,7 +164,7 @@ def load_jsondata(in_file, redundent_1, redundent_2, stopwords_file):
                         l.append(w)        
                 u_words = l
             d_words += u_words
-            new_document.append(' '.join(u_words))
+            new_document.append(u_words)
             if len(u_words) > max_d_len:
                 max_d_len = len(u_words)
 
@@ -178,7 +178,7 @@ def load_jsondata(in_file, redundent_1, redundent_2, stopwords_file):
         answer = entity_dict[answer]
         re_document = []
         for u in new_document:
-            u_words = ' '.join([entity_dict[w] if w in entity_dict else w for w in u.split(' ')])
+            u_words = ' '.join([entity_dict[w] if w in entity_dict else w for w in u])
             re_document.append(u_words)
         document = re_document
         question = ' '.join(q_words)

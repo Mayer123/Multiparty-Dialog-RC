@@ -1,8 +1,6 @@
 # Multiparty-Dialog-RC
 
-Code for the paper:
-
-Challenge Reading Comprehension on Daily Conversations: Passage Completion on Multiparty Dialog
+This repository contains the code for the paper "Challenge Reading Comprehension on Daily Conversations: Passage Completion on Multiparty Dialog". See full paper [here](https://www.aclweb.org/anthology/N18-1185/)
 
 ## Requirements
 * Python 2.7
@@ -38,3 +36,21 @@ Word embeddings: We used [Glove vectors](http://nlp.stanford.edu/data/glove.6B.z
 * `dropout`: default is 0.2.
 * `learning_rate`: default is 0.001.
 
+
+## Cite 
+```
+@inproceedings{ma-etal-2018-challenging,
+    title = "Challenging Reading Comprehension on Daily Conversation: Passage Completion on Multiparty Dialog",
+    author = "Ma, Kaixin  and
+      Jurczyk, Tomasz  and
+      Choi, Jinho D.",
+    booktitle = "Proceedings of the 2018 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)",
+    month = jun,
+    year = "2018",
+    address = "New Orleans, Louisiana",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/N18-1185",
+    doi = "10.18653/v1/N18-1185",
+    pages = "2039--2048",
+}
+```
